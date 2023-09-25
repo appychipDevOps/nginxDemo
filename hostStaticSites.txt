@@ -1,0 +1,58 @@
+# configuration file /etc/nginx/conf.d/appychip.in.conf:
+server{
+
+        listen 80 default_server;
+        root /var/www/html;
+        server_name appychip.in www.appychip.in;
+        index index.html index.htm;
+        location /{
+                try_files $uri $uri/ =404;
+        }
+
+}
+
+# configuration file /etc/nginx/conf.d/cafe.appychip.in.conf:
+server{
+
+        listen 80;
+        root /var/www/cafe;
+        server_name cafe.appychip.in www.cafe.appychip.in;
+        index index.html index.htm;
+        location /{
+                try_files $uri $uri/ =404;
+        }
+
+}
+
+# configuration file /etc/nginx/conf.d/dev.appychip.in.conf:
+server{
+
+        listen 80;
+        root /var/www/dev;
+        server_name dev.appychip.in www.dev.appychip.in;
+        auth_basic "Site Under Development";
+        auth_basic_user_file /etc/nginx/.htpasswd;
+
+        index index.html index.htm;
+        location /{
+                auth_basic off;
+                try_files $uri $uri/ =404;
+        }
+        location /admin{
+                try_files $uri $uri/ =404;
+        }
+
+}
+
+# configuration file /etc/nginx/conf.d/portfolio.appychip.in.conf:
+server{
+
+        listen 80;
+        root /var/www/portfolio;
+        server_name portfolio.appychip.in www.portfolio.appychip.in;
+        index index.html index.htm;
+        location /{
+                try_files $uri $uri/ =404;
+        }
+
+}
